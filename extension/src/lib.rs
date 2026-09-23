@@ -99,9 +99,15 @@ impl zed::Extension for ClaudeSkillsExtension {
             .and_then(|settings| settings.binary);
 
         // --- 1. explicit override ------------------------------------------
-        // Honour it exactly: no install status, no npm, no probing. This branch
-        // is also the whole local dev loop — pointing `path` at a built
-        // dist/server.js runs it under Zed's bundled Node.
+        // Honour it exactly: no install status, no npm, no probing.
+        //
+        // Current Zed resolves `lsp.<id>.binary.path` itself and spawns it
+        // directly, without calling into the extension, so this branch is a
+        // fallback for hosts that defer to us. In particular the `.js` case
+        // below does not rescue `"path": ".../dist/server.js"` in Zed: that
+        // file is not executable and fails with EACCES before we are asked.
+        // The documented dev setup is `"path"` = Node, with server.js as the
+        // first argument.
         if let Some(binary) = user_binary.as_ref() {
             if let Some(path) = binary.path.as_ref() {
                 let args = binary
