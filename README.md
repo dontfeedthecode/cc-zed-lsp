@@ -141,7 +141,7 @@ npm run docs:check   # HARD drift fails CI, SOFT drift opens a PR
 ## Development
 
 ```bash
-npm test                 # 69 tests: rules, cursor resolution, LSP integration, packaging
+npm test                 # 71 tests: rules, cursor resolution, LSP integration, packaging
 npm run check:versions   # extension and server versions must agree exactly
 ```
 

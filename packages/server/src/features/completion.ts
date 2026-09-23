@@ -11,16 +11,17 @@ import {
   MODEL_SUGGESTIONS,
   BUILTIN_AGENTS,
   TOOL_PATTERN_TEMPLATES,
+  parseFrontmatter,
+  listItems,
   type ArtifactSpec,
   type FieldSpec,
 } from '@thecode/claude-skills-schema';
 import { cursorContext, type CursorContext } from '../frontmatter/lineContext.js';
 import type { ArtifactDescriptor } from '../gate.js';
 
-/** Substitutions available in a skill body. */
+/** Substitutions available in a skill body, beyond the per-argument ones. */
 const SUBSTITUTIONS: { label: string; detail: string; pluginOnly?: boolean }[] = [
   { label: '$ARGUMENTS', detail: 'All arguments passed to the skill' },
-  { label: '$1', detail: 'Second positional argument (0-based $ARGUMENTS[1])' },
   { label: '${CLAUDE_SKILL_DIR}', detail: "The skill's own directory" },
   { label: '${CLAUDE_PROJECT_DIR}', detail: 'Project root' },
   { label: '${CLAUDE_SESSION_ID}', detail: 'Current session id' },
@@ -199,6 +200,46 @@ function valueCompletions(
   }
 }
 
+/**
+ * Positional and named argument substitutions, driven by the `arguments:` key.
+ *
+ * Each position is offered as `$N` immediately followed by its `$name`, so a
+ * skill declaring `arguments: url` sees `$0` then `$url` at the top of the list.
+ * With no declaration, `$0` is still offered: positional access always works.
+ */
+function argumentCompletions(
+  ctx: Extract<CursorContext, { kind: 'bodySubst' }>,
+  doc: TextDocument,
+  spec: ArtifactSpec,
+): CompletionItem[] {
+  const field = parseFrontmatter(doc.getText()).fields.get('arguments');
+  const sep = spec.fields.get('arguments')?.listSeparator ?? /[\s,]+/;
+  const names = field ? listItems(field, sep) : [];
+
+  const items: CompletionItem[] = [];
+  const count = Math.max(names.length, 1);
+  for (let i = 0; i < count; i++) {
+    const pos = String(i).padStart(3, '0');
+    items.push({
+      label: `$${i}`,
+      kind: CompletionItemKind.Variable,
+      detail: names[i] ? `Argument ${i} (${names[i]})` : `Argument ${i} (0-based $ARGUMENTS[${i}])`,
+      sortText: `0_${pos}_0`,
+      textEdit: edit(ctx, doc, `$${i}`),
+    });
+    if (names[i]) {
+      items.push({
+        label: `$${names[i]}`,
+        kind: CompletionItemKind.Variable,
+        detail: `Named argument ${i} (from arguments:)`,
+        sortText: `0_${pos}_1`,
+        textEdit: edit(ctx, doc, `$${names[i]}`),
+      });
+    }
+  }
+  return items;
+}
+
 export function computeCompletions(
   doc: TextDocument,
   offset: number,
@@ -232,12 +273,16 @@ export function computeCompletions(
       return [];
 
     case 'bodySubst':
-      return SUBSTITUTIONS.filter((s) => !s.pluginOnly || artifact.scope === 'plugin').map((s) => ({
-        label: s.label,
-        kind: CompletionItemKind.Variable,
-        detail: s.detail,
-        textEdit: edit(ctx, doc, s.label),
-      }));
+      return [
+        ...argumentCompletions(ctx, doc, spec),
+        ...SUBSTITUTIONS.filter((s) => !s.pluginOnly || artifact.scope === 'plugin').map((s, i) => ({
+          label: s.label,
+          kind: CompletionItemKind.Variable,
+          detail: s.detail,
+          sortText: `1_${String(i).padStart(2, '0')}`,
+          textEdit: edit(ctx, doc, s.label),
+        })),
+      ];
 
     default:
       return [];

@@ -231,6 +231,28 @@ describe('completion over the wire', () => {
     await client.change(uri, '---\nname: my-skill\n---\n\nRun $\n');
     expect(labels(await client.completion(uri, 4, 5))).toContain('$ARGUMENTS');
   });
+
+  it('puts declared arguments first, each position before its name', async () => {
+    const uri = skillUri('my-skill');
+    const bySort = async () =>
+      items(await client.completion(uri, 5, 5))
+        .sort((a, b) => a.sortText.localeCompare(b.sortText))
+        .map((i) => i.label);
+
+    await client.change(uri, '---\nname: my-skill\narguments: url\n---\n\nRun $\n');
+    expect((await bySort()).slice(0, 3)).toEqual(['$0', '$url', '$ARGUMENTS']);
+
+    await client.change(uri, '---\nname: my-skill\narguments: [x, y]\n---\n\nRun $\n');
+    expect((await bySort()).slice(0, 4)).toEqual(['$0', '$x', '$1', '$y']);
+  });
+
+  it('offers $0 even without an arguments declaration', async () => {
+    const uri = skillUri('my-skill');
+    await client.change(uri, '---\nname: my-skill\n---\n\nRun $\n');
+    const all = labels(await client.completion(uri, 4, 5));
+    expect(all).toContain('$0');
+    expect(all).not.toContain('$1');
+  });
 });
 
 describe('hover over the wire', () => {
