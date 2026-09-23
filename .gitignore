@@ -1,0 +1,15 @@
+node_modules/
+dist/
+target/
+*.tsbuildinfo
+.DS_Store
+
+# Build output. Zed compiles this itself from extension/src on
+# `zed: install dev extension` / `zed: rebuild dev extension`.
+extension/extension.wasm
+
+# Packed tarballs from `npm pack`.
+*.tgz
+
+# machine-specific dev override; see .zed/settings.json.example
+.zed/settings.json

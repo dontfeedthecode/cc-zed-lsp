@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "baseUrl": ".",
+    "paths": { "@thecode/claude-skills-schema": ["../schema/src/index.ts"] }
+  },
+  "include": ["src/**/*", "test/**/*"]
+}

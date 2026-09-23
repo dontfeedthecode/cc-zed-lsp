@@ -1,0 +1,12 @@
+{
+  "//": "Copy to .zed/settings.json and fix the absolute paths for your machine.",
+  "//dev": "Points Zed at a local server build. Run `npm run build -w @thecode/claude-skills-lsp -- --watch`, then `editor: restart language server` after each change.",
+  "lsp": {
+    "claude-skills-lsp": {
+      "binary": {
+        "path": "/ABSOLUTE/PATH/TO/cc-zed-lsp/packages/server/dist/server.js",
+        "arguments": ["--stdio"]
+      }
+    }
+  }
+}

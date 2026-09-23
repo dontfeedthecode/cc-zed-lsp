@@ -1,0 +1,10 @@
+{
+  "name": "@thecode/claude-skills-docs-sync",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}

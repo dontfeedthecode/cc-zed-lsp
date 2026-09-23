@@ -1,0 +1,55 @@
+{
+  "name": "@thecode/claude-skills-lsp",
+  "version": "0.1.0",
+  "description": "Language server for Claude Code SKILL.md files: completion, docs on hover, and validation.",
+  "license": "MIT",
+  "author": "Tim Sheehan <tsheehan@thecode.co>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dontfeedthecode/cc-zed-lsp.git",
+    "directory": "packages/server"
+  },
+  "homepage": "https://github.com/dontfeedthecode/cc-zed-lsp#readme",
+  "bugs": {
+    "url": "https://github.com/dontfeedthecode/cc-zed-lsp/issues"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skill",
+    "skills",
+    "lsp",
+    "language-server",
+    "zed",
+    "frontmatter",
+    "linter"
+  ],
+  "type": "module",
+  "bin": {
+    "claude-skills-lsp": "bin/server.js"
+  },
+  "main": "dist/server.js",
+  "files": [
+    "bin",
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "esbuild src/server.ts --bundle --platform=node --target=node20 --format=esm --outfile=dist/server.js --banner:js=\"import{createRequire}from'module';const require=createRequire(import.meta.url);\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12",
+    "yaml": "^2.6.1",
+    "@thecode/claude-skills-schema": "*",
+    "esbuild": "^0.24.0"
+  }
+}

@@ -1,0 +1,20 @@
+id = "claude-skills"
+name = "Claude Skills"
+description = "Autocomplete, docs on hover, and validation for Claude Code SKILL.md files"
+version = "0.1.0"
+schema_version = 1
+authors = ["Tim Sheehan <tsheehan@thecode.co>"]
+repository = "https://github.com/dontfeedthecode/cc-zed-lsp"
+
+# Zed has no hook finer than a language, and defining a custom "Claude Skill"
+# language would forfeit markdown preview (hard-gated on the literal name
+# "Markdown"), the user's own languages.Markdown settings, and every other
+# markdown extension they have installed. So we attach broadly and the server
+# gates by path — see packages/server/src/gate.ts.
+[language_servers.claude-skills-lsp]
+name = "Claude Skills"
+languages = ["Markdown", "Markdown-Inline"]
+
+[[capabilities]]
+kind = "npm:install"
+package = "@thecode/claude-skills-lsp"

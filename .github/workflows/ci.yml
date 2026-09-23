@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push: { branches: [main] }
+  pull_request:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 24 is what Zed bundles and therefore what users actually run;
+        # 20 is the supported floor.
+        node: ['20', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm test
+      - run: npm run check:versions
+
+  extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          # The target Zed 1.20 builds extensions with. Not wasip1.
+          targets: wasm32-wasip2
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+        with: { workspaces: extension }
+      - run: cargo fmt --all --check
+        working-directory: extension
+      # Host-target clippy fails on wit-bindgen's generated code, so the wasm
+      # target is not optional here.
+      - run: cargo clippy --locked --target wasm32-wasip2 -- -D warnings
+        working-directory: extension
+      - run: cargo build --locked --release --target wasm32-wasip2
+        working-directory: extension
+
+  docs-drift:
+    # Talks to code.claude.com, so it is isolated: an upstream outage must not
+    # block unrelated pull requests.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: npm }
+      - run: npm ci
+      - run: npm run docs:check

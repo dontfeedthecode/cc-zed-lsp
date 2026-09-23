@@ -1,0 +1,249 @@
+{
+  "lockVersion": 1,
+  "sources": {
+    "index": {
+      "url": "https://code.claude.com/llms.txt",
+      "sha256": "92adf76ba4eb3e090e186ed7766c99686ca7fb067a4038e86754e9231c42dac3",
+      "bytes": 46976
+    },
+    "tools": {
+      "url": "https://code.claude.com/docs/en/tools-reference.md",
+      "sha256": "72201e1682f1bdc04bcf7b892e072da1427094c84b2b26c20829e11cc23f2406",
+      "bytes": 110008
+    },
+    "skill": {
+      "url": "https://code.claude.com/docs/en/skills.md",
+      "sha256": "5a2e0e2ee821fb7b79bff173358f48c036a2c9406a0446bc8292aa0221eee4af",
+      "bytes": 115336
+    }
+  },
+  "artifacts": {
+    "skill": {
+      "fieldOrder": [
+        "name",
+        "description",
+        "when_to_use",
+        "argument-hint",
+        "arguments",
+        "disable-model-invocation",
+        "user-invocable",
+        "allowed-tools",
+        "disallowed-tools",
+        "model",
+        "effort",
+        "context",
+        "agent",
+        "background",
+        "hooks",
+        "paths",
+        "shell",
+        "metadata",
+        "license",
+        "compatibility"
+      ],
+      "fields": {
+        "name": {
+          "required": "No",
+          "descSha256": "e8ed5e8b1867fb52a942130ef2de413b61dc7faf974bc6bc0f13282b0d6f74ce",
+          "codeTokens": []
+        },
+        "description": {
+          "required": "Recommended",
+          "descSha256": "0695416451d2f370525af21cf0a65692467860b43438ea7606c20dbb627f7106",
+          "codeTokens": [
+            "description",
+            "when_to_use"
+          ]
+        },
+        "when_to_use": {
+          "required": "No",
+          "descSha256": "609dd78ace094857fcf65af5940edfdc611162f73e6c4ec307b8a81c2065bf09",
+          "codeTokens": [
+            "description"
+          ]
+        },
+        "argument-hint": {
+          "required": "No",
+          "descSha256": "9aa8784a6d74bcad45fa648f69d6ef2cde5be762b4b40777041b0c3fa2fcc3d7",
+          "codeTokens": [
+            "[issue-number]",
+            "[filename] [format]"
+          ]
+        },
+        "arguments": {
+          "required": "No",
+          "descSha256": "932d3f2c5e77c3bccda1615be470d44a31ccf4508ceab74492bde283095f6a70",
+          "codeTokens": [
+            "$name"
+          ]
+        },
+        "disable-model-invocation": {
+          "required": "No",
+          "descSha256": "f7713035f376c16297e9bd33d4436ed831da52f3eab4f388cdfbf149e9a8b5a3",
+          "codeTokens": [
+            "true",
+            "/name",
+            "false"
+          ]
+        },
+        "user-invocable": {
+          "required": "No",
+          "descSha256": "454eaecceeb090c1c6d50a60dd86b4b1398bd26516f79f0c2b7e77e3c5e3bad3",
+          "codeTokens": [
+            "false",
+            "/",
+            "/name",
+            "true"
+          ]
+        },
+        "allowed-tools": {
+          "required": "No",
+          "descSha256": "f20bf9ca2569751ea7907b1d421f5c965b7626b430058a25073fba73c5d6c2ad",
+          "codeTokens": []
+        },
+        "disallowed-tools": {
+          "required": "No",
+          "descSha256": "bc1cabf3c101ab64374b08397ad50bcb45ae0f1bf9b8598f6a71b8bfc14f708c",
+          "codeTokens": [
+            "AskUserQuestion",
+            "EndConversation"
+          ]
+        },
+        "model": {
+          "required": "No",
+          "descSha256": "ea8330c5c8608c27ea70771bde0deedea20f7e96d159d323dc3333d8ce392b72",
+          "codeTokens": [
+            "/model",
+            "inherit",
+            "availableModels",
+            "context: fork"
+          ]
+        },
+        "effort": {
+          "required": "No",
+          "descSha256": "2ec48a4039fa3576097066bbbb32f3e368b6124c9b6ec19f48606a03cb4b304e",
+          "codeTokens": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        "context": {
+          "required": "No",
+          "descSha256": "d0a96a6ad9470f234c834c41d8114a630b41c17cd73279586146747f6305a98d",
+          "codeTokens": [
+            "fork"
+          ]
+        },
+        "agent": {
+          "required": "No",
+          "descSha256": "2c0f64a9657022d2dee164e65f0d3bd5080b9b645aca65142d0bc9b5d8b679a4",
+          "codeTokens": [
+            "context: fork"
+          ]
+        },
+        "background": {
+          "required": "No",
+          "descSha256": "fef6ecda9c2334bd2203cbc4812ba64bbd0f91d33042e216804c80cb92e84f5f",
+          "codeTokens": [
+            "context: fork",
+            "false",
+            "true"
+          ]
+        },
+        "hooks": {
+          "required": "No",
+          "descSha256": "c09d4d058cb0133317d3e5ab80e5b6b81e9c9266068225f3e4089acc71be3aef",
+          "codeTokens": [
+            "once"
+          ]
+        },
+        "paths": {
+          "required": "No",
+          "descSha256": "83c3bcf1c726ce29c471ab6aa4ce0a9b6e432d4695ee574bcbabc5aa6cf115f5",
+          "codeTokens": []
+        },
+        "shell": {
+          "required": "No",
+          "descSha256": "b8ee83dfe1c2f309247fb6adbf07b0be0630ea3af854824b361df41028ea0670",
+          "codeTokens": [
+            "!",
+            "and",
+            "bash",
+            "powershell",
+            "CLAUDE_CODE_USE_POWERSHELL_TOOL=1",
+            "0"
+          ]
+        },
+        "metadata": {
+          "required": "No",
+          "descSha256": "8f299776a937434ae2518e0bac4ddd74a813326d0a76e181654368b3f95dfeb5",
+          "codeTokens": [
+            "SKILL.md",
+            "paths"
+          ]
+        },
+        "license": {
+          "required": "No",
+          "descSha256": "b7b18f00f32bc2c0c6545b9a7ab80fa1dc60e41810b6604850da905d895bfd17",
+          "codeTokens": []
+        },
+        "compatibility": {
+          "required": "No",
+          "descSha256": "86e36cac3cfcd2989264b793adfd53e09b7471a2e21a7b186da5787007ea2a50",
+          "codeTokens": []
+        }
+      }
+    }
+  },
+  "toolNames": [
+    "Agent",
+    "Artifact",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EndConversation",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListAgents",
+    "ListMcpResourcesTool",
+    "LSP",
+    "Monitor",
+    "NotebookEdit",
+    "PowerShell",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ReportFindings",
+    "ScheduleWakeup",
+    "SendFeedback",
+    "SendMessage",
+    "SendUserFile",
+    "ShareOnboardingGuide",
+    "Skill",
+    "SubagentHandback",
+    "TaskCreate",
+    "TaskGet",
+    "TaskList",
+    "TaskOutput",
+    "TaskStop",
+    "TaskUpdate",
+    "TodoWrite",
+    "ToolSearch",
+    "WaitForMcpServers",
+    "WebFetch",
+    "WebSearch",
+    "Workflow",
+    "Write"
+  ]
+}

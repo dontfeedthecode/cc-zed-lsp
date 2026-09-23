@@ -1,0 +1,1001 @@
+{
+  "$generated": true,
+  "$doNotEdit": "Regenerate with `npm run docs:sync`. Curated facts live in src/curated/.",
+  "generatorVersion": 1,
+  "fetchedAt": "2026-09-19T14:05:28.459Z",
+  "sources": {
+    "index": {
+      "url": "https://code.claude.com/llms.txt",
+      "sha256": "92adf76ba4eb3e090e186ed7766c99686ca7fb067a4038e86754e9231c42dac3",
+      "bytes": 46976
+    },
+    "tools": {
+      "url": "https://code.claude.com/docs/en/tools-reference.md",
+      "sha256": "72201e1682f1bdc04bcf7b892e072da1427094c84b2b26c20829e11cc23f2406",
+      "bytes": 110008
+    },
+    "skill": {
+      "url": "https://code.claude.com/docs/en/skills.md",
+      "sha256": "5a2e0e2ee821fb7b79bff173358f48c036a2c9406a0446bc8292aa0221eee4af",
+      "bytes": 115336
+    }
+  },
+  "artifacts": {
+    "skill": {
+      "docsAnchor": "https://code.claude.com/docs/en/skills#frontmatter-reference",
+      "portableFields": [
+        "name",
+        "description",
+        "license",
+        "allowed-tools",
+        "metadata",
+        "compatibility"
+      ],
+      "fields": {
+        "name": {
+          "order": 0,
+          "required": "No",
+          "descriptionRaw": "Display name shown in skill listings. Defaults to the directory name. See [How a skill gets its command name](#how-a-skill-gets-its-command-name) for how the field interacts with the name you type to invoke the skill.",
+          "descriptionMarkdown": "Display name shown in skill listings. Defaults to the directory name. See [How a skill gets its command name](https://code.claude.com/docs/en/skills#how-a-skill-gets-its-command-name) for how the field interacts with the name you type to invoke the skill.",
+          "codeTokens": [],
+          "links": [
+            {
+              "text": "How a skill gets its command name",
+              "raw": "#how-a-skill-gets-its-command-name",
+              "resolved": "https://code.claude.com/docs/en/skills#how-a-skill-gets-its-command-name",
+              "known": true
+            }
+          ]
+        },
+        "description": {
+          "order": 1,
+          "required": "Recommended",
+          "descriptionRaw": "What the skill does and when to use it. Claude uses this to decide when to apply the skill. If omitted, uses the first non-empty line of the markdown content. Put the key use case first: the combined `description` and `when_to_use` text is truncated at 1,536 characters in the skill listing to reduce context usage.",
+          "descriptionMarkdown": "What the skill does and when to use it. Claude uses this to decide when to apply the skill. If omitted, uses the first non-empty line of the markdown content. Put the key use case first: the combined `description` and `when_to_use` text is truncated at 1,536 characters in the skill listing to reduce context usage.",
+          "codeTokens": [
+            "description",
+            "when_to_use"
+          ],
+          "links": []
+        },
+        "when_to_use": {
+          "order": 2,
+          "required": "No",
+          "descriptionRaw": "Additional context for when Claude should invoke the skill, such as trigger phrases or example requests. Appended to `description` in the skill listing and counts toward the 1,536-character cap.",
+          "descriptionMarkdown": "Additional context for when Claude should invoke the skill, such as trigger phrases or example requests. Appended to `description` in the skill listing and counts toward the 1,536-character cap.",
+          "codeTokens": [
+            "description"
+          ],
+          "links": []
+        },
+        "argument-hint": {
+          "order": 3,
+          "required": "No",
+          "descriptionRaw": "Hint shown during autocomplete to indicate expected arguments. Example: `[issue-number]` or `[filename] [format]`.",
+          "descriptionMarkdown": "Hint shown during autocomplete to indicate expected arguments. Example: `[issue-number]` or `[filename] [format]`.",
+          "codeTokens": [
+            "[issue-number]",
+            "[filename] [format]"
+          ],
+          "links": []
+        },
+        "arguments": {
+          "order": 4,
+          "required": "No",
+          "descriptionRaw": "Named positional arguments for [`$name` substitution](#available-string-substitutions) in the skill content. Accepts a space-separated string or a YAML list. Names map to argument positions in order.",
+          "descriptionMarkdown": "Named positional arguments for [`$name` substitution](https://code.claude.com/docs/en/skills#available-string-substitutions) in the skill content. Accepts a space-separated string or a YAML list. Names map to argument positions in order.",
+          "codeTokens": [
+            "$name"
+          ],
+          "links": [
+            {
+              "text": "`$name` substitution",
+              "raw": "#available-string-substitutions",
+              "resolved": "https://code.claude.com/docs/en/skills#available-string-substitutions",
+              "known": true
+            }
+          ]
+        },
+        "disable-model-invocation": {
+          "order": 5,
+          "required": "No",
+          "descriptionRaw": "Set to `true` to prevent Claude from automatically loading this skill. Use for workflows you want to trigger manually with `/name`. Also prevents the skill from being [preloaded into subagents](/docs/en/sub-agents#preload-skills-into-subagents). As of v2.1.196, also prevents the skill from running when a [scheduled task](/docs/en/scheduled-tasks) fires with the skill as its prompt. Default: `false`.",
+          "descriptionMarkdown": "Set to `true` to prevent Claude from automatically loading this skill. Use for workflows you want to trigger manually with `/name`. Also prevents the skill from being [preloaded into subagents](https://code.claude.com/docs/en/sub-agents#preload-skills-into-subagents). As of v2.1.196, also prevents the skill from running when a [scheduled task](https://code.claude.com/docs/en/scheduled-tasks) fires with the skill as its prompt. Default: `false`.",
+          "codeTokens": [
+            "true",
+            "/name",
+            "false"
+          ],
+          "links": [
+            {
+              "text": "preloaded into subagents",
+              "raw": "/docs/en/sub-agents#preload-skills-into-subagents",
+              "resolved": "https://code.claude.com/docs/en/sub-agents#preload-skills-into-subagents",
+              "known": true
+            },
+            {
+              "text": "scheduled task",
+              "raw": "/docs/en/scheduled-tasks",
+              "resolved": "https://code.claude.com/docs/en/scheduled-tasks",
+              "known": true
+            }
+          ]
+        },
+        "user-invocable": {
+          "order": 6,
+          "required": "No",
+          "descriptionRaw": "Set to `false` when only Claude should invoke the skill: Claude Code hides it from the `/` menu and doesn't run it when you type `/name`. Use for background knowledge users shouldn't invoke directly. Default: `true`.",
+          "descriptionMarkdown": "Set to `false` when only Claude should invoke the skill: Claude Code hides it from the `/` menu and doesn't run it when you type `/name`. Use for background knowledge users shouldn't invoke directly. Default: `true`.",
+          "codeTokens": [
+            "false",
+            "/",
+            "/name",
+            "true"
+          ],
+          "links": []
+        },
+        "allowed-tools": {
+          "order": 7,
+          "required": "No",
+          "descriptionRaw": "Tools Claude can use without asking permission during the turn that invokes this skill. The grant clears when you send your next message. Accepts a space- or comma-separated string, or a YAML list. See [Pre-approve tools for a skill](#pre-approve-tools-for-a-skill).",
+          "descriptionMarkdown": "Tools Claude can use without asking permission during the turn that invokes this skill. The grant clears when you send your next message. Accepts a space- or comma-separated string, or a YAML list. See [Pre-approve tools for a skill](https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill).",
+          "codeTokens": [],
+          "links": [
+            {
+              "text": "Pre-approve tools for a skill",
+              "raw": "#pre-approve-tools-for-a-skill",
+              "resolved": "https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill",
+              "known": true
+            }
+          ]
+        },
+        "disallowed-tools": {
+          "order": 8,
+          "required": "No",
+          "descriptionRaw": "Tools removed from Claude's available pool while this skill is active. Use for autonomous skills that should never call certain tools, such as `AskUserQuestion` for a background loop. Accepts a space- or comma-separated string, or a YAML list. The restriction clears when you send your next message. Like deny rules, the field can't remove [`EndConversation`](/docs/en/tools-reference#endconversation-tool-behavior) while any other tool remains.",
+          "descriptionMarkdown": "Tools removed from Claude's available pool while this skill is active. Use for autonomous skills that should never call certain tools, such as `AskUserQuestion` for a background loop. Accepts a space- or comma-separated string, or a YAML list. The restriction clears when you send your next message. Like deny rules, the field can't remove [`EndConversation`](https://code.claude.com/docs/en/tools-reference#endconversation-tool-behavior) while any other tool remains.",
+          "codeTokens": [
+            "AskUserQuestion",
+            "EndConversation"
+          ],
+          "links": [
+            {
+              "text": "`EndConversation`",
+              "raw": "/docs/en/tools-reference#endconversation-tool-behavior",
+              "resolved": "https://code.claude.com/docs/en/tools-reference#endconversation-tool-behavior",
+              "known": true
+            }
+          ]
+        },
+        "model": {
+          "order": 9,
+          "required": "No",
+          "descriptionRaw": "Model to use when this skill is active. The override applies for the rest of the current turn and isn't saved to settings. The session model resumes when you send your next prompt. Accepts the same values as [`/model`](/docs/en/model-config), or `inherit` to keep the active model. A value excluded by your organization's [`availableModels`](/docs/en/model-config#restrict-model-selection) allowlist isn't used, and the session keeps its current model. In [auto mode](/docs/en/permission-modes#eliminate-prompts-with-auto-mode), and in [plan mode while the classifier reviews commands](/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode), a model that auto mode doesn't support also isn't used, and the session keeps its current model. With `context: fork`, the value sets the [forked subagent's model](#run-skills-in-a-subagent) instead, and an excluded value follows the [same rules as a subagent model override](/docs/en/model-config#restrict-model-selection).",
+          "descriptionMarkdown": "Model to use when this skill is active. The override applies for the rest of the current turn and isn't saved to settings. The session model resumes when you send your next prompt. Accepts the same values as [`/model`](https://code.claude.com/docs/en/model-config), or `inherit` to keep the active model. A value excluded by your organization's [`availableModels`](https://code.claude.com/docs/en/model-config#restrict-model-selection) allowlist isn't used, and the session keeps its current model. In [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode), and in [plan mode while the classifier reviews commands](https://code.claude.com/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode), a model that auto mode doesn't support also isn't used, and the session keeps its current model. With `context: fork`, the value sets the [forked subagent's model](https://code.claude.com/docs/en/skills#run-skills-in-a-subagent) instead, and an excluded value follows the [same rules as a subagent model override](https://code.claude.com/docs/en/model-config#restrict-model-selection).",
+          "codeTokens": [
+            "/model",
+            "inherit",
+            "availableModels",
+            "context: fork"
+          ],
+          "links": [
+            {
+              "text": "`/model`",
+              "raw": "/docs/en/model-config",
+              "resolved": "https://code.claude.com/docs/en/model-config",
+              "known": true
+            },
+            {
+              "text": "`availableModels`",
+              "raw": "/docs/en/model-config#restrict-model-selection",
+              "resolved": "https://code.claude.com/docs/en/model-config#restrict-model-selection",
+              "known": true
+            },
+            {
+              "text": "auto mode",
+              "raw": "/docs/en/permission-modes#eliminate-prompts-with-auto-mode",
+              "resolved": "https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode",
+              "known": true
+            },
+            {
+              "text": "plan mode while the classifier reviews commands",
+              "raw": "/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode",
+              "resolved": "https://code.claude.com/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode",
+              "known": true
+            },
+            {
+              "text": "forked subagent's model",
+              "raw": "#run-skills-in-a-subagent",
+              "resolved": "https://code.claude.com/docs/en/skills#run-skills-in-a-subagent",
+              "known": true
+            },
+            {
+              "text": "same rules as a subagent model override",
+              "raw": "/docs/en/model-config#restrict-model-selection",
+              "resolved": "https://code.claude.com/docs/en/model-config#restrict-model-selection",
+              "known": true
+            }
+          ]
+        },
+        "effort": {
+          "order": 10,
+          "required": "No",
+          "descriptionRaw": "[Effort level](/docs/en/model-config#adjust-effort-level) when this skill is active. Overrides the session effort level. Default: inherits from session. Options: `low`, `medium`, `high`, `xhigh`, `max`; available levels depend on the model.",
+          "descriptionMarkdown": "[Effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) when this skill is active. Overrides the session effort level. Default: inherits from session. Options: `low`, `medium`, `high`, `xhigh`, `max`; available levels depend on the model.",
+          "codeTokens": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "links": [
+            {
+              "text": "Effort level",
+              "raw": "/docs/en/model-config#adjust-effort-level",
+              "resolved": "https://code.claude.com/docs/en/model-config#adjust-effort-level",
+              "known": true
+            }
+          ]
+        },
+        "context": {
+          "order": 11,
+          "required": "No",
+          "descriptionRaw": "Set to `fork` to run in a forked subagent context. See [Run skills in a subagent](#run-skills-in-a-subagent).",
+          "descriptionMarkdown": "Set to `fork` to run in a forked subagent context. See [Run skills in a subagent](https://code.claude.com/docs/en/skills#run-skills-in-a-subagent).",
+          "codeTokens": [
+            "fork"
+          ],
+          "links": [
+            {
+              "text": "Run skills in a subagent",
+              "raw": "#run-skills-in-a-subagent",
+              "resolved": "https://code.claude.com/docs/en/skills#run-skills-in-a-subagent",
+              "known": true
+            }
+          ]
+        },
+        "agent": {
+          "order": 12,
+          "required": "No",
+          "descriptionRaw": "Which subagent type to use when `context: fork` is set.",
+          "descriptionMarkdown": "Which subagent type to use when `context: fork` is set.",
+          "codeTokens": [
+            "context: fork"
+          ],
+          "links": []
+        },
+        "background": {
+          "order": 13,
+          "required": "No",
+          "descriptionRaw": "Only applies with `context: fork`. Set to `false` to wait for the forked subagent's result in the turn that invoked the skill, instead of [running it in the background](#run-skills-in-a-subagent). Default: `true`. Requires Claude Code v2.1.218 or later.",
+          "descriptionMarkdown": "Only applies with `context: fork`. Set to `false` to wait for the forked subagent's result in the turn that invoked the skill, instead of [running it in the background](https://code.claude.com/docs/en/skills#run-skills-in-a-subagent). Default: `true`. Requires Claude Code v2.1.218 or later.",
+          "codeTokens": [
+            "context: fork",
+            "false",
+            "true"
+          ],
+          "links": [
+            {
+              "text": "running it in the background",
+              "raw": "#run-skills-in-a-subagent",
+              "resolved": "https://code.claude.com/docs/en/skills#run-skills-in-a-subagent",
+              "known": true
+            }
+          ]
+        },
+        "hooks": {
+          "order": 14,
+          "required": "No",
+          "descriptionRaw": "Hooks that Claude Code registers when the skill is invoked and keeps running for the rest of the session. See [Hooks in skills and agents](/docs/en/hooks#hooks-in-skills-and-agents) for the configuration format and the `once` option.",
+          "descriptionMarkdown": "Hooks that Claude Code registers when the skill is invoked and keeps running for the rest of the session. See [Hooks in skills and agents](https://code.claude.com/docs/en/hooks#hooks-in-skills-and-agents) for the configuration format and the `once` option.",
+          "codeTokens": [
+            "once"
+          ],
+          "links": [
+            {
+              "text": "Hooks in skills and agents",
+              "raw": "/docs/en/hooks#hooks-in-skills-and-agents",
+              "resolved": "https://code.claude.com/docs/en/hooks#hooks-in-skills-and-agents",
+              "known": true
+            }
+          ]
+        },
+        "paths": {
+          "order": 15,
+          "required": "No",
+          "descriptionRaw": "Glob patterns that limit when this skill is activated. Accepts a comma-separated string or a YAML list. When set, Claude loads the skill automatically only when working with files matching the patterns. Uses the same format as [path-specific rules](/docs/en/memory#path-specific-rules).",
+          "descriptionMarkdown": "Glob patterns that limit when this skill is activated. Accepts a comma-separated string or a YAML list. When set, Claude loads the skill automatically only when working with files matching the patterns. Uses the same format as [path-specific rules](https://code.claude.com/docs/en/memory#path-specific-rules).",
+          "codeTokens": [],
+          "links": [
+            {
+              "text": "path-specific rules",
+              "raw": "/docs/en/memory#path-specific-rules",
+              "resolved": "https://code.claude.com/docs/en/memory#path-specific-rules",
+              "known": true
+            }
+          ]
+        },
+        "shell": {
+          "order": 16,
+          "required": "No",
+          "descriptionRaw": "Shell to use for `` !`command` `` and ` ```! ` blocks in this skill. Accepts `bash` (default) or `powershell`. Setting `powershell` runs inline shell commands via PowerShell when the [PowerShell tool](/en/tools-reference#powershell-tool) is enabled: it's on by default on Windows without Git Bash, on by default with Git Bash for claude.ai and Console accounts, and needs `CLAUDE_CODE_USE_POWERSHELL_TOOL=1` in Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry sessions and on macOS, Linux, and WSL. Set it to `0` to turn the tool off.                                                                                                                                                                                                                                                                                                                                                                                                               |",
+          "descriptionMarkdown": "Shell to use for `` !`command` `` and ` ```! ` blocks in this skill. Accepts `bash` (default) or `powershell`. Setting `powershell` runs inline shell commands via PowerShell when the [PowerShell tool](https://code.claude.com/docs/en/tools-reference#powershell-tool) is enabled: it's on by default on Windows without Git Bash, on by default with Git Bash for claude.ai and Console accounts, and needs `CLAUDE_CODE_USE_POWERSHELL_TOOL=1` in Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry sessions and on macOS, Linux, and WSL. Set it to `0` to turn the tool off.                                                                                                                                                                                                                                                                                                                                                                                                               |",
+          "codeTokens": [
+            "!",
+            "and",
+            "bash",
+            "powershell",
+            "CLAUDE_CODE_USE_POWERSHELL_TOOL=1",
+            "0"
+          ],
+          "links": [
+            {
+              "text": "PowerShell tool",
+              "raw": "/en/tools-reference#powershell-tool",
+              "resolved": "https://code.claude.com/docs/en/tools-reference#powershell-tool",
+              "known": true
+            }
+          ]
+        },
+        "metadata": {
+          "order": 17,
+          "required": "No",
+          "descriptionRaw": "Free-form YAML map for your own key-value data, such as entitlement or catalog fields, read by your own tooling from `SKILL.md`. Claude Code doesn't act on its contents, and drops a value that isn't a map. Don't reuse frontmatter field names such as `paths` as keys.",
+          "descriptionMarkdown": "Free-form YAML map for your own key-value data, such as entitlement or catalog fields, read by your own tooling from `SKILL.md`. Claude Code doesn't act on its contents, and drops a value that isn't a map. Don't reuse frontmatter field names such as `paths` as keys.",
+          "codeTokens": [
+            "SKILL.md",
+            "paths"
+          ],
+          "links": []
+        },
+        "license": {
+          "order": 18,
+          "required": "No",
+          "descriptionRaw": "License covering the skill. Part of the [Agent Skills](https://agentskills.io) spec; see [Using skill frontmatter outside Claude Code](#using-skill-frontmatter-outside-claude-code). Claude Code accepts the field but doesn't act on it.",
+          "descriptionMarkdown": "License covering the skill. Part of the [Agent Skills](https://agentskills.io) spec; see [Using skill frontmatter outside Claude Code](https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code). Claude Code accepts the field but doesn't act on it.",
+          "codeTokens": [],
+          "links": [
+            {
+              "text": "Agent Skills",
+              "raw": "https://agentskills.io",
+              "resolved": "https://agentskills.io",
+              "known": true
+            },
+            {
+              "text": "Using skill frontmatter outside Claude Code",
+              "raw": "#using-skill-frontmatter-outside-claude-code",
+              "resolved": "https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code",
+              "known": true
+            }
+          ]
+        },
+        "compatibility": {
+          "order": 19,
+          "required": "No",
+          "descriptionRaw": "Environment requirements for the skill, such as intended products or system prerequisites, as defined by the [Agent Skills](https://agentskills.io) spec; see [Using skill frontmatter outside Claude Code](#using-skill-frontmatter-outside-claude-code). Accepts a string of up to 500 characters. Claude Code accepts the field but doesn't act on it.",
+          "descriptionMarkdown": "Environment requirements for the skill, such as intended products or system prerequisites, as defined by the [Agent Skills](https://agentskills.io) spec; see [Using skill frontmatter outside Claude Code](https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code). Accepts a string of up to 500 characters. Claude Code accepts the field but doesn't act on it.",
+          "codeTokens": [],
+          "links": [
+            {
+              "text": "Agent Skills",
+              "raw": "https://agentskills.io",
+              "resolved": "https://agentskills.io",
+              "known": true
+            },
+            {
+              "text": "Using skill frontmatter outside Claude Code",
+              "raw": "#using-skill-frontmatter-outside-claude-code",
+              "resolved": "https://code.claude.com/docs/en/skills#using-skill-frontmatter-outside-claude-code",
+              "known": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "Agent",
+      "descriptionMarkdown": "Spawns a [subagent](https://code.claude.com/docs/en/sub-agents) with its own context window to handle a task. With [agent teams](https://code.claude.com/docs/en/agent-teams) enabled, a call that carries a `name` can launch a [teammate](https://code.claude.com/docs/en/agent-teams#how-claude-starts-agent-teams) instead. See [Agent tool behavior](https://code.claude.com/docs/en/tools-reference#agent-tool-behavior)"
+    },
+    {
+      "name": "Artifact",
+      "descriptionMarkdown": "Publishes an HTML or Markdown file as an [artifact](https://code.claude.com/docs/en/artifacts): a private, interactive page on claude.ai. You can share it with a public link, or inside your organization on Team and Enterprise plans, where public sharing requires an Owner to [enable it](https://code.claude.com/docs/en/artifacts#control-public-sharing). Requires a Pro, Max, Team, or Enterprise plan and `/login` authentication; see [Availability](https://code.claude.com/docs/en/artifacts#availability)"
+    },
+    {
+      "name": "AskUserQuestion",
+      "descriptionMarkdown": "Asks multiple-choice questions to gather requirements or clarify ambiguity. Questions stay open until you answer them by default. See [AskUserQuestion tool behavior](https://code.claude.com/docs/en/tools-reference#askuserquestion-tool-behavior)"
+    },
+    {
+      "name": "Bash",
+      "descriptionMarkdown": "Executes shell commands in your environment. See [Bash tool behavior](https://code.claude.com/docs/en/tools-reference#bash-tool-behavior)"
+    },
+    {
+      "name": "CronCreate",
+      "descriptionMarkdown": "Schedules a recurring or one-shot prompt within the current session. Tasks are session-scoped and restored on `--resume` or `--continue` if unexpired. See [scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks)"
+    },
+    {
+      "name": "CronDelete",
+      "descriptionMarkdown": "Cancels a scheduled task by ID"
+    },
+    {
+      "name": "CronList",
+      "descriptionMarkdown": "Lists all scheduled tasks in the session"
+    },
+    {
+      "name": "Edit",
+      "descriptionMarkdown": "Makes targeted edits to specific files. See [Edit tool behavior](https://code.claude.com/docs/en/tools-reference#edit-tool-behavior)"
+    },
+    {
+      "name": "EndConversation",
+      "descriptionMarkdown": "Ends the session, in rare cases of sustained abusive input or when you ask Claude to demonstrate the tool. Requires Claude Code v2.1.213 or later. See [EndConversation tool behavior](https://code.claude.com/docs/en/tools-reference#endconversation-tool-behavior)"
+    },
+    {
+      "name": "EnterPlanMode",
+      "descriptionMarkdown": "Switches to plan mode to design an approach before coding"
+    },
+    {
+      "name": "EnterWorktree",
+      "descriptionMarkdown": "Creates an isolated [git worktree](https://code.claude.com/docs/en/worktrees) and switches into it. Pass a `path` to switch into an existing worktree instead of creating a new one. On first entry the target may be a worktree of the current repository or, in a multi-repo workspace, of a repository nested inside it. Before v2.1.203, a nested repository's worktree was rejected. A `path` outside `.claude/worktrees/` prompts for your approval before entering, since it moves the session's working directory and write access to that location. New-worktree creation and paths under `.claude/worktrees/` don't prompt. Before v2.1.206, Claude entered paths outside `.claude/worktrees/` without a prompt. From within a worktree session, or from a subagent with a pinned working directory such as [`isolation: worktree`](https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields), only the `path` form is available and the target must be under `.claude/worktrees/` of the session's repository"
+    },
+    {
+      "name": "ExitPlanMode",
+      "descriptionMarkdown": "Presents a plan for approval and exits plan mode"
+    },
+    {
+      "name": "ExitWorktree",
+      "descriptionMarkdown": "Exits a worktree session and returns to the original directory. Not available to subagents that already run in their own working directory, such as with [`isolation: worktree`](https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields)"
+    },
+    {
+      "name": "Glob",
+      "descriptionMarkdown": "Finds files based on pattern matching. Absent by default on macOS, Linux, and WSL. See [Glob tool behavior](https://code.claude.com/docs/en/tools-reference#glob-tool-behavior)"
+    },
+    {
+      "name": "Grep",
+      "descriptionMarkdown": "Searches for patterns in file contents. Absent by default on macOS, Linux, and WSL. See [Grep tool behavior](https://code.claude.com/docs/en/tools-reference#grep-tool-behavior)"
+    },
+    {
+      "name": "ListAgents",
+      "descriptionMarkdown": "Lists the agents Claude can message with `SendMessage`: subagents in the session, [agent team](https://code.claude.com/docs/en/agent-teams) teammates, your other local Claude Code sessions, and, while this session is connected to [Remote Control](https://code.claude.com/docs/en/remote-control), your [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) and your Remote Control sessions on other machines. Backs the `/list-agents` command. See [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging). Requires Claude Code v2.1.224 or later, and appears only in sessions where [cross-session messaging is enabled](https://code.claude.com/docs/en/cross-session-messaging#availability). Teammate rows and the first line showing this session's own name require v2.1.239 or later"
+    },
+    {
+      "name": "ListMcpResourcesTool",
+      "descriptionMarkdown": "Lists resources exposed by connected [MCP servers](https://code.claude.com/docs/en/mcp)"
+    },
+    {
+      "name": "LSP",
+      "descriptionMarkdown": "Code intelligence via language servers: jump to definitions, find references, report type errors and warnings. See [LSP tool behavior](https://code.claude.com/docs/en/tools-reference#lsp-tool-behavior)"
+    },
+    {
+      "name": "Monitor",
+      "descriptionMarkdown": "Runs a command in the background and feeds each output line back to Claude, so it can react to log entries, file changes, or polled status mid-conversation. Can also open a WebSocket and treat each incoming message as an event. See [Monitor tool](https://code.claude.com/docs/en/tools-reference#monitor-tool)"
+    },
+    {
+      "name": "NotebookEdit",
+      "descriptionMarkdown": "Modifies Jupyter notebook cells. See [NotebookEdit tool behavior](https://code.claude.com/docs/en/tools-reference#notebookedit-tool-behavior)"
+    },
+    {
+      "name": "PowerShell",
+      "descriptionMarkdown": "Executes PowerShell commands natively. See [PowerShell tool](https://code.claude.com/docs/en/tools-reference#powershell-tool) for availability"
+    },
+    {
+      "name": "PushNotification",
+      "descriptionMarkdown": "Sends a desktop notification, and a phone push when [Remote Control](https://code.claude.com/docs/en/remote-control) is connected, so a long-running task or [scheduled task](https://code.claude.com/docs/en/scheduled-tasks) can reach you when you step away. Push delivery runs through Anthropic-hosted infrastructure, which is not accessible from Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, or Microsoft Foundry"
+    },
+    {
+      "name": "Read",
+      "descriptionMarkdown": "Reads the contents of files. See [Read tool behavior](https://code.claude.com/docs/en/tools-reference#read-tool-behavior)"
+    },
+    {
+      "name": "ReadMcpResourceTool",
+      "descriptionMarkdown": "Reads a specific MCP resource by URI"
+    },
+    {
+      "name": "RemoteTrigger",
+      "descriptionMarkdown": "Creates, updates, runs, and lists [Routines](https://code.claude.com/docs/en/routines) on claude.ai. Backs the `/schedule` command. The [`RemoteTrigger` input reference](https://code.claude.com/docs/en/agent-sdk/typescript#remotetrigger) documents every action and the organization policies that remove the tool. Routines live on claude.ai and require a Pro, Max, Team, or Enterprise plan, so this tool is not accessible from Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, or Microsoft Foundry"
+    },
+    {
+      "name": "ReportFindings",
+      "descriptionMarkdown": "Reports code-review findings as a structured list, with a file, summary, and failure scenario per finding, so Claude Code can render them instead of printing them as text. Claude calls it when active code-review instructions tell it to. Requires Claude Code v2.1.196 or later. As of v2.1.199, a finding can also carry an optional `category` slug, such as `correctness` or `test-coverage`, shown next to the file location in the rendered list"
+    },
+    {
+      "name": "ScheduleWakeup",
+      "descriptionMarkdown": "Reschedules the next iteration of a [self-paced `/loop`](https://code.claude.com/docs/en/scheduled-tasks#let-claude-choose-the-interval). Claude calls this at the end of each iteration to pick when the next one runs, between one minute and one hour out; you don't call it directly. To end the loop instead, Claude calls it with `stop: true`, which cancels the pending wakeup. The `stop` field requires Claude Code v2.1.202 or later. The pending wakeup appears in `session_crons` in [Stop hook input](https://code.claude.com/docs/en/hooks#stop-input)"
+    },
+    {
+      "name": "SendFeedback",
+      "descriptionMarkdown": "Drafts a feedback report about Claude Code, covering a product problem or Claude's own behavior in the session, and queues it on your machine for you to review. Claude Code sends nothing until you choose to send the draft. See [SendFeedback tool behavior](https://code.claude.com/docs/en/tools-reference#sendfeedback-tool-behavior). Requires Claude Code v2.1.238 or later"
+    },
+    {
+      "name": "SendMessage",
+      "descriptionMarkdown": "Sends a message to another agent: an [agent team](https://code.claude.com/docs/en/agent-teams) teammate, a [subagent it resumes](https://code.claude.com/docs/en/sub-agents#resume-subagents) by agent ID or name, or one of your other Claude Code sessions, on this machine or beyond it. Messaging other sessions requires Claude Code v2.1.224 or later. [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) covers which sessions Claude can reach, [what a message looks like when it arrives](https://code.claude.com/docs/en/cross-session-messaging#what-a-message-looks-like), and [how Claude gets a notice when another session goes idle](https://code.claude.com/docs/en/cross-session-messaging#get-a-notice-when-another-session-goes-idle). Claude can include an optional `summary` input, typically 5-10 words, that Claude Code shows as a one-line preview. When Claude omits it on a [plain-text message](https://code.claude.com/docs/en/cross-session-messaging#limitations), Claude Code uses the first line of the message as the summary. Claude Code truncates a summary longer than 200 characters with an ellipsis"
+    },
+    {
+      "name": "SendUserFile",
+      "descriptionMarkdown": "Sends files from the session to you with an optional caption, so a generated report, diagram, screenshot, or built artifact reaches your device instead of only being mentioned in the transcript. As of v2.1.196, the optional `display` input controls presentation: `render` opens the file inline in the client, `attach` shows a download card only, and when unset the client decides by file type. Available when a [Remote Control](https://code.claude.com/docs/en/remote-control) client is connected or in a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web). Delivery runs through Anthropic-hosted infrastructure, so the tool is not available on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry"
+    },
+    {
+      "name": "ShareOnboardingGuide",
+      "descriptionMarkdown": "Uploads `ONBOARDING.md` and returns a share link teammates can open in Claude Code. Called from `/team-onboarding` after the guide is written. Available to claude.ai subscribers on Pro, Max, Team, and Enterprise plans"
+    },
+    {
+      "name": "Skill",
+      "descriptionMarkdown": "Executes a [skill](https://code.claude.com/docs/en/skills#control-who-invokes-a-skill) within the main conversation"
+    },
+    {
+      "name": "SubagentHandback",
+      "descriptionMarkdown": "Delivers a subagent's final report to whichever conversation receives that subagent's result. Provided only in [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode), to subagents that the Agent tool runs locally other than [forks](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation), and available in the terminal CLI, IDE extensions, cloud sessions, and the Agent SDK; the classifier reviews the report before it's delivered. Requires Claude Code v2.1.271 or later"
+    },
+    {
+      "name": "TaskCreate",
+      "descriptionMarkdown": "Creates a new task in the task list. Provided by default only on the models listed under [Task tool availability](https://code.claude.com/docs/en/tools-reference#task-tool-availability), and on other models when you opt in"
+    },
+    {
+      "name": "TaskGet",
+      "descriptionMarkdown": "Retrieves full details for a specific task. Provided by default only on the models listed under [Task tool availability](https://code.claude.com/docs/en/tools-reference#task-tool-availability), and on other models when you opt in"
+    },
+    {
+      "name": "TaskList",
+      "descriptionMarkdown": "Lists all tasks with their current status. Provided by default only on the models listed under [Task tool availability](https://code.claude.com/docs/en/tools-reference#task-tool-availability), and on other models when you opt in"
+    },
+    {
+      "name": "TaskOutput",
+      "descriptionMarkdown": "Retrieves output from a background task. Deprecated in favor of `Read` on the task's output file path. When no task matches the ID, the error lists the running background agents by ID and description. Before v2.1.203, the error named only the missing ID"
+    },
+    {
+      "name": "TaskStop",
+      "descriptionMarkdown": "Stops a running background task by ID. It also accepts an [agent-team teammate](https://code.claude.com/docs/en/agent-teams) or a named background agent by agent ID or name. Before v2.1.198, it accepted only a background task ID. When no task matches the ID, the error lists the running background agents by ID and description, including agents that another agent spawned. Before v2.1.203, the error listed running teammates and named agents but not background agents another agent spawned, so those couldn't be identified or stopped from the main conversation"
+    },
+    {
+      "name": "TaskUpdate",
+      "descriptionMarkdown": "Updates task status, dependencies, details, or deletes tasks. Provided by default only on the models listed under [Task tool availability](https://code.claude.com/docs/en/tools-reference#task-tool-availability), and on other models when you opt in"
+    },
+    {
+      "name": "TodoWrite",
+      "descriptionMarkdown": "Manages the session task checklist. Disabled by default in favor of `TaskCreate`, `TaskGet`, `TaskList`, and `TaskUpdate`. Set `CLAUDE_CODE_ENABLE_TASKS=0` to re-enable it in [sessions that have the task-tracking tools](https://code.claude.com/docs/en/tools-reference#task-tool-availability)"
+    },
+    {
+      "name": "ToolSearch",
+      "descriptionMarkdown": "Searches for and loads deferred tools when [tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search) is enabled"
+    },
+    {
+      "name": "WaitForMcpServers",
+      "descriptionMarkdown": "Waits for one or more [MCP servers](https://code.claude.com/docs/en/mcp) that are still connecting in the background, so a request can use their tools without restarting the session. Claude calls it when a needed server isn't connected yet. Only appears when [tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search) is disabled, since `ToolSearch` handles the wait when it's enabled"
+    },
+    {
+      "name": "WebFetch",
+      "descriptionMarkdown": "Fetches content from a specified URL. See [WebFetch tool behavior](https://code.claude.com/docs/en/tools-reference#webfetch-tool-behavior)"
+    },
+    {
+      "name": "WebSearch",
+      "descriptionMarkdown": "Performs web searches. See [WebSearch tool behavior](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior)"
+    },
+    {
+      "name": "Workflow",
+      "descriptionMarkdown": "Runs a [dynamic workflow](https://code.claude.com/docs/en/workflows): a script that orchestrates many subagents in the background and returns one consolidated result"
+    },
+    {
+      "name": "Write",
+      "descriptionMarkdown": "Creates or overwrites files. See [Write tool behavior](https://code.claude.com/docs/en/tools-reference#write-tool-behavior)"
+    }
+  ],
+  "docPages": [
+    "https://code.claude.com/docs/_llms/cn",
+    "https://code.claude.com/docs/_llms/cn.md",
+    "https://code.claude.com/docs/_llms/de",
+    "https://code.claude.com/docs/_llms/de.md",
+    "https://code.claude.com/docs/_llms/es",
+    "https://code.claude.com/docs/_llms/es.md",
+    "https://code.claude.com/docs/_llms/fr",
+    "https://code.claude.com/docs/_llms/fr.md",
+    "https://code.claude.com/docs/_llms/id",
+    "https://code.claude.com/docs/_llms/id.md",
+    "https://code.claude.com/docs/_llms/it",
+    "https://code.claude.com/docs/_llms/it.md",
+    "https://code.claude.com/docs/_llms/jp",
+    "https://code.claude.com/docs/_llms/jp.md",
+    "https://code.claude.com/docs/_llms/ko",
+    "https://code.claude.com/docs/_llms/ko.md",
+    "https://code.claude.com/docs/_llms/pt-br",
+    "https://code.claude.com/docs/_llms/pt-br.md",
+    "https://code.claude.com/docs/_llms/ru",
+    "https://code.claude.com/docs/_llms/ru.md",
+    "https://code.claude.com/docs/_llms/zh-hant",
+    "https://code.claude.com/docs/_llms/zh-hant.md",
+    "https://code.claude.com/docs/en/accessibility",
+    "https://code.claude.com/docs/en/accessibility.md",
+    "https://code.claude.com/docs/en/admin-setup",
+    "https://code.claude.com/docs/en/admin-setup.md",
+    "https://code.claude.com/docs/en/advisor",
+    "https://code.claude.com/docs/en/advisor.md",
+    "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+    "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
+    "https://code.claude.com/docs/en/agent-sdk/claude-code-features",
+    "https://code.claude.com/docs/en/agent-sdk/claude-code-features.md",
+    "https://code.claude.com/docs/en/agent-sdk/configuration",
+    "https://code.claude.com/docs/en/agent-sdk/configuration.md",
+    "https://code.claude.com/docs/en/agent-sdk/cost-tracking",
+    "https://code.claude.com/docs/en/agent-sdk/cost-tracking.md",
+    "https://code.claude.com/docs/en/agent-sdk/custom-tools",
+    "https://code.claude.com/docs/en/agent-sdk/custom-tools.md",
+    "https://code.claude.com/docs/en/agent-sdk/examples",
+    "https://code.claude.com/docs/en/agent-sdk/examples.md",
+    "https://code.claude.com/docs/en/agent-sdk/file-checkpointing",
+    "https://code.claude.com/docs/en/agent-sdk/file-checkpointing.md",
+    "https://code.claude.com/docs/en/agent-sdk/hooks",
+    "https://code.claude.com/docs/en/agent-sdk/hooks.md",
+    "https://code.claude.com/docs/en/agent-sdk/hosting",
+    "https://code.claude.com/docs/en/agent-sdk/hosting.md",
+    "https://code.claude.com/docs/en/agent-sdk/mcp",
+    "https://code.claude.com/docs/en/agent-sdk/mcp.md",
+    "https://code.claude.com/docs/en/agent-sdk/migration-guide",
+    "https://code.claude.com/docs/en/agent-sdk/migration-guide.md",
+    "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts",
+    "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts.md",
+    "https://code.claude.com/docs/en/agent-sdk/observability",
+    "https://code.claude.com/docs/en/agent-sdk/observability.md",
+    "https://code.claude.com/docs/en/agent-sdk/overview",
+    "https://code.claude.com/docs/en/agent-sdk/overview.md",
+    "https://code.claude.com/docs/en/agent-sdk/permissions",
+    "https://code.claude.com/docs/en/agent-sdk/permissions.md",
+    "https://code.claude.com/docs/en/agent-sdk/plugins",
+    "https://code.claude.com/docs/en/agent-sdk/plugins.md",
+    "https://code.claude.com/docs/en/agent-sdk/python",
+    "https://code.claude.com/docs/en/agent-sdk/python.md",
+    "https://code.claude.com/docs/en/agent-sdk/quickstart",
+    "https://code.claude.com/docs/en/agent-sdk/quickstart.md",
+    "https://code.claude.com/docs/en/agent-sdk/secure-deployment",
+    "https://code.claude.com/docs/en/agent-sdk/secure-deployment.md",
+    "https://code.claude.com/docs/en/agent-sdk/session-storage",
+    "https://code.claude.com/docs/en/agent-sdk/session-storage.md",
+    "https://code.claude.com/docs/en/agent-sdk/sessions",
+    "https://code.claude.com/docs/en/agent-sdk/sessions.md",
+    "https://code.claude.com/docs/en/agent-sdk/skills",
+    "https://code.claude.com/docs/en/agent-sdk/skills.md",
+    "https://code.claude.com/docs/en/agent-sdk/streaming-output",
+    "https://code.claude.com/docs/en/agent-sdk/streaming-output.md",
+    "https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode",
+    "https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md",
+    "https://code.claude.com/docs/en/agent-sdk/structured-outputs",
+    "https://code.claude.com/docs/en/agent-sdk/structured-outputs.md",
+    "https://code.claude.com/docs/en/agent-sdk/subagents",
+    "https://code.claude.com/docs/en/agent-sdk/subagents.md",
+    "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
+    "https://code.claude.com/docs/en/agent-sdk/todo-tracking.md",
+    "https://code.claude.com/docs/en/agent-sdk/tool-search",
+    "https://code.claude.com/docs/en/agent-sdk/tool-search.md",
+    "https://code.claude.com/docs/en/agent-sdk/troubleshooting",
+    "https://code.claude.com/docs/en/agent-sdk/troubleshooting.md",
+    "https://code.claude.com/docs/en/agent-sdk/typescript",
+    "https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview",
+    "https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview.md",
+    "https://code.claude.com/docs/en/agent-sdk/typescript.md",
+    "https://code.claude.com/docs/en/agent-sdk/user-input",
+    "https://code.claude.com/docs/en/agent-sdk/user-input.md",
+    "https://code.claude.com/docs/en/agent-teams",
+    "https://code.claude.com/docs/en/agent-teams.md",
+    "https://code.claude.com/docs/en/agent-view",
+    "https://code.claude.com/docs/en/agent-view.md",
+    "https://code.claude.com/docs/en/agents",
+    "https://code.claude.com/docs/en/agents.md",
+    "https://code.claude.com/docs/en/amazon-bedrock",
+    "https://code.claude.com/docs/en/amazon-bedrock.md",
+    "https://code.claude.com/docs/en/analytics",
+    "https://code.claude.com/docs/en/analytics.md",
+    "https://code.claude.com/docs/en/artifacts",
+    "https://code.claude.com/docs/en/artifacts.md",
+    "https://code.claude.com/docs/en/authentication",
+    "https://code.claude.com/docs/en/authentication.md",
+    "https://code.claude.com/docs/en/auto-mode-config",
+    "https://code.claude.com/docs/en/auto-mode-config.md",
+    "https://code.claude.com/docs/en/best-practices",
+    "https://code.claude.com/docs/en/best-practices.md",
+    "https://code.claude.com/docs/en/champion-kit",
+    "https://code.claude.com/docs/en/champion-kit.md",
+    "https://code.claude.com/docs/en/changelog",
+    "https://code.claude.com/docs/en/changelog.md",
+    "https://code.claude.com/docs/en/channels",
+    "https://code.claude.com/docs/en/channels-reference",
+    "https://code.claude.com/docs/en/channels-reference.md",
+    "https://code.claude.com/docs/en/channels.md",
+    "https://code.claude.com/docs/en/checkpointing",
+    "https://code.claude.com/docs/en/checkpointing.md",
+    "https://code.claude.com/docs/en/chrome",
+    "https://code.claude.com/docs/en/chrome.md",
+    "https://code.claude.com/docs/en/claude-apps-gateway",
+    "https://code.claude.com/docs/en/claude-apps-gateway-config",
+    "https://code.claude.com/docs/en/claude-apps-gateway-config.md",
+    "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
+    "https://code.claude.com/docs/en/claude-apps-gateway-deploy.md",
+    "https://code.claude.com/docs/en/claude-apps-gateway-on-aws",
+    "https://code.claude.com/docs/en/claude-apps-gateway-on-aws.md",
+    "https://code.claude.com/docs/en/claude-apps-gateway-on-gcp",
+    "https://code.claude.com/docs/en/claude-apps-gateway-on-gcp.md",
+    "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits",
+    "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md",
+    "https://code.claude.com/docs/en/claude-apps-gateway.md",
+    "https://code.claude.com/docs/en/claude-code-on-the-web",
+    "https://code.claude.com/docs/en/claude-code-on-the-web.md",
+    "https://code.claude.com/docs/en/claude-directory",
+    "https://code.claude.com/docs/en/claude-directory.md",
+    "https://code.claude.com/docs/en/claude-platform-on-aws",
+    "https://code.claude.com/docs/en/claude-platform-on-aws.md",
+    "https://code.claude.com/docs/en/claude-projects",
+    "https://code.claude.com/docs/en/claude-projects.md",
+    "https://code.claude.com/docs/en/claude-security",
+    "https://code.claude.com/docs/en/claude-security.md",
+    "https://code.claude.com/docs/en/claude-tag",
+    "https://code.claude.com/docs/en/claude-tag.md",
+    "https://code.claude.com/docs/en/cli-reference",
+    "https://code.claude.com/docs/en/cli-reference.md",
+    "https://code.claude.com/docs/en/cloud-environments",
+    "https://code.claude.com/docs/en/cloud-environments.md",
+    "https://code.claude.com/docs/en/code-review",
+    "https://code.claude.com/docs/en/code-review.md",
+    "https://code.claude.com/docs/en/commands",
+    "https://code.claude.com/docs/en/commands.md",
+    "https://code.claude.com/docs/en/common-workflows",
+    "https://code.claude.com/docs/en/common-workflows.md",
+    "https://code.claude.com/docs/en/communications-kit",
+    "https://code.claude.com/docs/en/communications-kit.md",
+    "https://code.claude.com/docs/en/computer-use",
+    "https://code.claude.com/docs/en/computer-use.md",
+    "https://code.claude.com/docs/en/context-window",
+    "https://code.claude.com/docs/en/context-window.md",
+    "https://code.claude.com/docs/en/corporate-launcher",
+    "https://code.claude.com/docs/en/corporate-launcher.md",
+    "https://code.claude.com/docs/en/costs",
+    "https://code.claude.com/docs/en/costs.md",
+    "https://code.claude.com/docs/en/cross-session-messaging",
+    "https://code.claude.com/docs/en/cross-session-messaging.md",
+    "https://code.claude.com/docs/en/data-usage",
+    "https://code.claude.com/docs/en/data-usage.md",
+    "https://code.claude.com/docs/en/debug-your-config",
+    "https://code.claude.com/docs/en/debug-your-config.md",
+    "https://code.claude.com/docs/en/deep-links",
+    "https://code.claude.com/docs/en/deep-links.md",
+    "https://code.claude.com/docs/en/desktop",
+    "https://code.claude.com/docs/en/desktop-ios-simulator",
+    "https://code.claude.com/docs/en/desktop-ios-simulator.md",
+    "https://code.claude.com/docs/en/desktop-linux",
+    "https://code.claude.com/docs/en/desktop-linux.md",
+    "https://code.claude.com/docs/en/desktop-quickstart",
+    "https://code.claude.com/docs/en/desktop-quickstart.md",
+    "https://code.claude.com/docs/en/desktop-scheduled-tasks",
+    "https://code.claude.com/docs/en/desktop-scheduled-tasks.md",
+    "https://code.claude.com/docs/en/desktop-wsl",
+    "https://code.claude.com/docs/en/desktop-wsl.md",
+    "https://code.claude.com/docs/en/desktop.md",
+    "https://code.claude.com/docs/en/devcontainer",
+    "https://code.claude.com/docs/en/devcontainer.md",
+    "https://code.claude.com/docs/en/discover-plugins",
+    "https://code.claude.com/docs/en/discover-plugins.md",
+    "https://code.claude.com/docs/en/env-vars",
+    "https://code.claude.com/docs/en/env-vars.md",
+    "https://code.claude.com/docs/en/errors",
+    "https://code.claude.com/docs/en/errors.md",
+    "https://code.claude.com/docs/en/fast-mode",
+    "https://code.claude.com/docs/en/fast-mode.md",
+    "https://code.claude.com/docs/en/feature-availability",
+    "https://code.claude.com/docs/en/feature-availability.md",
+    "https://code.claude.com/docs/en/features-overview",
+    "https://code.claude.com/docs/en/features-overview.md",
+    "https://code.claude.com/docs/en/fullscreen",
+    "https://code.claude.com/docs/en/fullscreen.md",
+    "https://code.claude.com/docs/en/gateways",
+    "https://code.claude.com/docs/en/gateways.md",
+    "https://code.claude.com/docs/en/github-actions",
+    "https://code.claude.com/docs/en/github-actions-cloud-providers",
+    "https://code.claude.com/docs/en/github-actions-cloud-providers.md",
+    "https://code.claude.com/docs/en/github-actions.md",
+    "https://code.claude.com/docs/en/github-enterprise-server",
+    "https://code.claude.com/docs/en/github-enterprise-server.md",
+    "https://code.claude.com/docs/en/gitlab-ci-cd",
+    "https://code.claude.com/docs/en/gitlab-ci-cd.md",
+    "https://code.claude.com/docs/en/glossary",
+    "https://code.claude.com/docs/en/glossary.md",
+    "https://code.claude.com/docs/en/goal",
+    "https://code.claude.com/docs/en/goal.md",
+    "https://code.claude.com/docs/en/google-vertex-ai",
+    "https://code.claude.com/docs/en/google-vertex-ai.md",
+    "https://code.claude.com/docs/en/headless",
+    "https://code.claude.com/docs/en/headless.md",
+    "https://code.claude.com/docs/en/hooks",
+    "https://code.claude.com/docs/en/hooks-guide",
+    "https://code.claude.com/docs/en/hooks-guide.md",
+    "https://code.claude.com/docs/en/hooks.md",
+    "https://code.claude.com/docs/en/how-claude-code-works",
+    "https://code.claude.com/docs/en/how-claude-code-works.md",
+    "https://code.claude.com/docs/en/interactive-mode",
+    "https://code.claude.com/docs/en/interactive-mode.md",
+    "https://code.claude.com/docs/en/jetbrains",
+    "https://code.claude.com/docs/en/jetbrains.md",
+    "https://code.claude.com/docs/en/keybindings",
+    "https://code.claude.com/docs/en/keybindings.md",
+    "https://code.claude.com/docs/en/large-codebases",
+    "https://code.claude.com/docs/en/large-codebases.md",
+    "https://code.claude.com/docs/en/legal-and-compliance",
+    "https://code.claude.com/docs/en/legal-and-compliance.md",
+    "https://code.claude.com/docs/en/llm-gateway",
+    "https://code.claude.com/docs/en/llm-gateway-connect",
+    "https://code.claude.com/docs/en/llm-gateway-connect.md",
+    "https://code.claude.com/docs/en/llm-gateway-protocol",
+    "https://code.claude.com/docs/en/llm-gateway-protocol.md",
+    "https://code.claude.com/docs/en/llm-gateway-rollout",
+    "https://code.claude.com/docs/en/llm-gateway-rollout.md",
+    "https://code.claude.com/docs/en/llm-gateway.md",
+    "https://code.claude.com/docs/en/managed-mcp",
+    "https://code.claude.com/docs/en/managed-mcp.md",
+    "https://code.claude.com/docs/en/managed-settings",
+    "https://code.claude.com/docs/en/managed-settings.md",
+    "https://code.claude.com/docs/en/mcp",
+    "https://code.claude.com/docs/en/mcp-quickstart",
+    "https://code.claude.com/docs/en/mcp-quickstart.md",
+    "https://code.claude.com/docs/en/mcp.md",
+    "https://code.claude.com/docs/en/memory",
+    "https://code.claude.com/docs/en/memory.md",
+    "https://code.claude.com/docs/en/microsoft-foundry",
+    "https://code.claude.com/docs/en/microsoft-foundry.md",
+    "https://code.claude.com/docs/en/mobile",
+    "https://code.claude.com/docs/en/mobile.md",
+    "https://code.claude.com/docs/en/model-config",
+    "https://code.claude.com/docs/en/model-config.md",
+    "https://code.claude.com/docs/en/monitoring-usage",
+    "https://code.claude.com/docs/en/monitoring-usage.md",
+    "https://code.claude.com/docs/en/network-config",
+    "https://code.claude.com/docs/en/network-config.md",
+    "https://code.claude.com/docs/en/output-styles",
+    "https://code.claude.com/docs/en/output-styles.md",
+    "https://code.claude.com/docs/en/overview",
+    "https://code.claude.com/docs/en/overview.md",
+    "https://code.claude.com/docs/en/permission-modes",
+    "https://code.claude.com/docs/en/permission-modes.md",
+    "https://code.claude.com/docs/en/permissions",
+    "https://code.claude.com/docs/en/permissions.md",
+    "https://code.claude.com/docs/en/platforms",
+    "https://code.claude.com/docs/en/platforms.md",
+    "https://code.claude.com/docs/en/plugin-dependencies",
+    "https://code.claude.com/docs/en/plugin-dependencies.md",
+    "https://code.claude.com/docs/en/plugin-evals",
+    "https://code.claude.com/docs/en/plugin-evals.md",
+    "https://code.claude.com/docs/en/plugin-hints",
+    "https://code.claude.com/docs/en/plugin-hints.md",
+    "https://code.claude.com/docs/en/plugin-marketplaces",
+    "https://code.claude.com/docs/en/plugin-marketplaces.md",
+    "https://code.claude.com/docs/en/plugin-relevance",
+    "https://code.claude.com/docs/en/plugin-relevance.md",
+    "https://code.claude.com/docs/en/plugins",
+    "https://code.claude.com/docs/en/plugins-reference",
+    "https://code.claude.com/docs/en/plugins-reference.md",
+    "https://code.claude.com/docs/en/plugins.md",
+    "https://code.claude.com/docs/en/prompt-caching",
+    "https://code.claude.com/docs/en/prompt-caching.md",
+    "https://code.claude.com/docs/en/prompt-library",
+    "https://code.claude.com/docs/en/prompt-library.md",
+    "https://code.claude.com/docs/en/quickstart",
+    "https://code.claude.com/docs/en/quickstart.md",
+    "https://code.claude.com/docs/en/remote-control",
+    "https://code.claude.com/docs/en/remote-control.md",
+    "https://code.claude.com/docs/en/routines",
+    "https://code.claude.com/docs/en/routines.md",
+    "https://code.claude.com/docs/en/sandbox-environments",
+    "https://code.claude.com/docs/en/sandbox-environments.md",
+    "https://code.claude.com/docs/en/sandboxing",
+    "https://code.claude.com/docs/en/sandboxing.md",
+    "https://code.claude.com/docs/en/scheduled-tasks",
+    "https://code.claude.com/docs/en/scheduled-tasks.md",
+    "https://code.claude.com/docs/en/security",
+    "https://code.claude.com/docs/en/security-guidance",
+    "https://code.claude.com/docs/en/security-guidance.md",
+    "https://code.claude.com/docs/en/security.md",
+    "https://code.claude.com/docs/en/self-hosted-environments",
+    "https://code.claude.com/docs/en/self-hosted-environments-configuration",
+    "https://code.claude.com/docs/en/self-hosted-environments-configuration.md",
+    "https://code.claude.com/docs/en/self-hosted-environments-deploy",
+    "https://code.claude.com/docs/en/self-hosted-environments-deploy.md",
+    "https://code.claude.com/docs/en/self-hosted-environments-identity",
+    "https://code.claude.com/docs/en/self-hosted-environments-identity.md",
+    "https://code.claude.com/docs/en/self-hosted-environments-quickstart",
+    "https://code.claude.com/docs/en/self-hosted-environments-quickstart.md",
+    "https://code.claude.com/docs/en/self-hosted-environments-reference",
+    "https://code.claude.com/docs/en/self-hosted-environments-reference.md",
+    "https://code.claude.com/docs/en/self-hosted-environments-testing",
+    "https://code.claude.com/docs/en/self-hosted-environments-testing.md",
+    "https://code.claude.com/docs/en/self-hosted-environments.md",
+    "https://code.claude.com/docs/en/server-managed-settings",
+    "https://code.claude.com/docs/en/server-managed-settings.md",
+    "https://code.claude.com/docs/en/sessions",
+    "https://code.claude.com/docs/en/sessions.md",
+    "https://code.claude.com/docs/en/settings",
+    "https://code.claude.com/docs/en/settings-example",
+    "https://code.claude.com/docs/en/settings-example.md",
+    "https://code.claude.com/docs/en/settings-reference",
+    "https://code.claude.com/docs/en/settings-reference.md",
+    "https://code.claude.com/docs/en/settings.md",
+    "https://code.claude.com/docs/en/setup",
+    "https://code.claude.com/docs/en/setup.md",
+    "https://code.claude.com/docs/en/skills",
+    "https://code.claude.com/docs/en/skills.md",
+    "https://code.claude.com/docs/en/slack",
+    "https://code.claude.com/docs/en/slack.md",
+    "https://code.claude.com/docs/en/statusline",
+    "https://code.claude.com/docs/en/statusline.md",
+    "https://code.claude.com/docs/en/sub-agents",
+    "https://code.claude.com/docs/en/sub-agents.md",
+    "https://code.claude.com/docs/en/terminal-config",
+    "https://code.claude.com/docs/en/terminal-config.md",
+    "https://code.claude.com/docs/en/third-party-integrations",
+    "https://code.claude.com/docs/en/third-party-integrations.md",
+    "https://code.claude.com/docs/en/tools-reference",
+    "https://code.claude.com/docs/en/tools-reference.md",
+    "https://code.claude.com/docs/en/troubleshoot-install",
+    "https://code.claude.com/docs/en/troubleshoot-install.md",
+    "https://code.claude.com/docs/en/troubleshooting",
+    "https://code.claude.com/docs/en/troubleshooting.md",
+    "https://code.claude.com/docs/en/ultrareview",
+    "https://code.claude.com/docs/en/ultrareview.md",
+    "https://code.claude.com/docs/en/voice-dictation",
+    "https://code.claude.com/docs/en/voice-dictation.md",
+    "https://code.claude.com/docs/en/vs-code",
+    "https://code.claude.com/docs/en/vs-code.md",
+    "https://code.claude.com/docs/en/web-quickstart",
+    "https://code.claude.com/docs/en/web-quickstart.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w13",
+    "https://code.claude.com/docs/en/whats-new/2026-w13.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w14",
+    "https://code.claude.com/docs/en/whats-new/2026-w14.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w15",
+    "https://code.claude.com/docs/en/whats-new/2026-w15.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w16",
+    "https://code.claude.com/docs/en/whats-new/2026-w16.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w17",
+    "https://code.claude.com/docs/en/whats-new/2026-w17.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w18",
+    "https://code.claude.com/docs/en/whats-new/2026-w18.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w19",
+    "https://code.claude.com/docs/en/whats-new/2026-w19.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w20",
+    "https://code.claude.com/docs/en/whats-new/2026-w20.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w21",
+    "https://code.claude.com/docs/en/whats-new/2026-w21.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w22",
+    "https://code.claude.com/docs/en/whats-new/2026-w22.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w23",
+    "https://code.claude.com/docs/en/whats-new/2026-w23.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w24",
+    "https://code.claude.com/docs/en/whats-new/2026-w24.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w25",
+    "https://code.claude.com/docs/en/whats-new/2026-w25.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w26",
+    "https://code.claude.com/docs/en/whats-new/2026-w26.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w27",
+    "https://code.claude.com/docs/en/whats-new/2026-w27.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w28",
+    "https://code.claude.com/docs/en/whats-new/2026-w28.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w29",
+    "https://code.claude.com/docs/en/whats-new/2026-w29.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w30",
+    "https://code.claude.com/docs/en/whats-new/2026-w30.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w32",
+    "https://code.claude.com/docs/en/whats-new/2026-w32.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w33",
+    "https://code.claude.com/docs/en/whats-new/2026-w33.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w34",
+    "https://code.claude.com/docs/en/whats-new/2026-w34.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w35",
+    "https://code.claude.com/docs/en/whats-new/2026-w35.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w36",
+    "https://code.claude.com/docs/en/whats-new/2026-w36.md",
+    "https://code.claude.com/docs/en/whats-new/2026-w37",
+    "https://code.claude.com/docs/en/whats-new/2026-w37.md",
+    "https://code.claude.com/docs/en/whats-new/index",
+    "https://code.claude.com/docs/en/whats-new/index.md",
+    "https://code.claude.com/docs/en/workflows",
+    "https://code.claude.com/docs/en/workflows.md",
+    "https://code.claude.com/docs/en/worktrees",
+    "https://code.claude.com/docs/en/worktrees.md",
+    "https://code.claude.com/docs/en/zero-data-retention",
+    "https://code.claude.com/docs/en/zero-data-retention.md"
+  ]
+}
