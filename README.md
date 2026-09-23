@@ -22,6 +22,20 @@ Not yet published — neither the extension nor its npm server package. Until bo
 cannot fetch the server for itself, so installing is three steps rather than one: build the server,
 install the extension, then point the extension at the server you built.
 
+### With Claude Code
+
+```bash
+git clone https://github.com/dontfeedthecode/cc-zed-lsp && cd cc-zed-lsp
+claude "/setup-zed"
+```
+
+The bundled `/setup-zed` skill builds the server and adds it to `~/.config/zed/settings.json`. To
+set it up for one project only, pass that project's path: `/setup-zed /path/to/project`. It then
+lists the two steps that have to happen in Zed: **zed: install dev extension** (first time only)
+and **editor: restart language server**. Run it again after a `git pull` to rebuild.
+
+### By hand
+
 **1. Build the server.**
 
 ```bash
@@ -162,6 +176,7 @@ packages/schema/      Pure: types, curated facts, rules, validation. No LSP, no 
 packages/server/      The language server. Bundles schema into one zero-dependency file.
 packages/docs-sync/   Fetches the docs, generates the extract, classifies drift.
 extension/            The Zed extension (Rust → wasm32-wasip2).
+.claude/skills/       /setup-zed: builds the server and points Zed at it.
 ```
 
 `packages/schema` is deliberately dependency-free so it can also back a CLI linter or a GitHub
