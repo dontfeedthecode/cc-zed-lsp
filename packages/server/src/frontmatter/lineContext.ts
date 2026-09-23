@@ -106,7 +106,8 @@ function topLevelKeys(text: string, bounds: FrontmatterBounds): string[] {
   return keys;
 }
 
-const SUBST = /\$\{?([A-Za-z_][A-Za-z0-9_]*)?$/;
+// Digits are allowed so that typing `$0` keeps the positional items on offer.
+const SUBST = /\$\{?([A-Za-z0-9_]+)?$/;
 
 /** Resolve where the caret is. Never throws; returns `outside` when unsure. */
 export function cursorContext(text: string, offset: number): CursorContext {
