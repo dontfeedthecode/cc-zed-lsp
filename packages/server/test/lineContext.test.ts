@@ -120,6 +120,15 @@ describe('outside the frontmatter', () => {
   it('recognises a braced substitution', () => {
     expect(at('---\nname: x\n---\nSee ${CLAUDE_‸\n')).toMatchObject({ kind: 'bodySubst' });
   });
+
+  it('recognises a substitution inside a frontmatter value', () => {
+    expect(at('---\nallowed-tools: Bash(${CLAUDE_‸\n---\n')).toMatchObject({
+      kind: 'fmSubst',
+      braced: true,
+      prefix: '${CLAUDE_',
+    });
+    expect(at('---\nallowed-tools:\n  - Bash($‸\n---\n')).toMatchObject({ kind: 'fmSubst' });
+  });
 });
 
 describe('degenerate input', () => {

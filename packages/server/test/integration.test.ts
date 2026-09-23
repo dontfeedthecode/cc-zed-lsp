@@ -232,6 +232,16 @@ describe('completion over the wire', () => {
     expect(labels(await client.completion(uri, 4, 5))).toContain('$ARGUMENTS');
   });
 
+  it('offers path substitutions, not arguments, inside a frontmatter value', async () => {
+    const uri = skillUri('my-skill');
+    await client.change(uri, '---\nname: my-skill\nallowed-tools: Bash(${\n---\n\nBody\n');
+    const got = items(await client.completion(uri, 2, 22));
+    const dir = got.find((i) => i.label === '${CLAUDE_SKILL_DIR}');
+    expect(dir.textEdit.range.start.character).toBe(20);
+    expect(got.map((i) => i.label)).not.toContain('$ARGUMENTS');
+    expect(got.map((i) => i.label)).not.toContain('$0');
+  });
+
   it('puts declared arguments first, each position before its name', async () => {
     const uri = skillUri('my-skill');
     const bySort = async () =>

@@ -19,9 +19,12 @@ import {
 import { cursorContext, type CursorContext } from '../frontmatter/lineContext.js';
 import type { ArtifactDescriptor } from '../gate.js';
 
-/** Substitutions available in a skill body, beyond the per-argument ones. */
-const SUBSTITUTIONS: { label: string; detail: string; pluginOnly?: boolean }[] = [
-  { label: '$ARGUMENTS', detail: 'All arguments passed to the skill' },
+/**
+ * Substitutions available in a skill body, beyond the per-argument ones.
+ * `bodyOnly` marks argument substitutions, which mean nothing in frontmatter.
+ */
+const SUBSTITUTIONS: { label: string; detail: string; pluginOnly?: boolean; bodyOnly?: boolean }[] = [
+  { label: '$ARGUMENTS', detail: 'All arguments passed to the skill', bodyOnly: true },
   { label: '${CLAUDE_SKILL_DIR}', detail: "The skill's own directory" },
   { label: '${CLAUDE_PROJECT_DIR}', detail: 'Project root' },
   { label: '${CLAUDE_SESSION_ID}', detail: 'Current session id' },
@@ -240,6 +243,22 @@ function argumentCompletions(
   return items;
 }
 
+function substitutionCompletions(
+  ctx: Extract<CursorContext, { kind: 'bodySubst' } | { kind: 'fmSubst' }>,
+  doc: TextDocument,
+  artifact: ArtifactDescriptor,
+): CompletionItem[] {
+  return SUBSTITUTIONS.filter(
+    (s) => (!s.pluginOnly || artifact.scope === 'plugin') && (!s.bodyOnly || ctx.kind === 'bodySubst'),
+  ).map((s, i) => ({
+    label: s.label,
+    kind: CompletionItemKind.Variable,
+    detail: s.detail,
+    sortText: `1_${String(i).padStart(2, '0')}`,
+    textEdit: edit(ctx, doc, s.label),
+  }));
+}
+
 export function computeCompletions(
   doc: TextDocument,
   offset: number,
@@ -273,16 +292,10 @@ export function computeCompletions(
       return [];
 
     case 'bodySubst':
-      return [
-        ...argumentCompletions(ctx, doc, spec),
-        ...SUBSTITUTIONS.filter((s) => !s.pluginOnly || artifact.scope === 'plugin').map((s, i) => ({
-          label: s.label,
-          kind: CompletionItemKind.Variable,
-          detail: s.detail,
-          sortText: `1_${String(i).padStart(2, '0')}`,
-          textEdit: edit(ctx, doc, s.label),
-        })),
-      ];
+      return [...argumentCompletions(ctx, doc, spec), ...substitutionCompletions(ctx, doc, artifact)];
+
+    case 'fmSubst':
+      return substitutionCompletions(ctx, doc, artifact);
 
     default:
       return [];
