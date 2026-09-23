@@ -129,6 +129,21 @@ describe('outside the frontmatter', () => {
     });
     expect(at('---\nallowed-tools:\n  - Bash($‸\n---\n')).toMatchObject({ kind: 'fmSubst' });
   });
+
+  it('replaces through an auto-closed brace', () => {
+    const text = '---\nname: x\n---\nSee ${‸}/x\n';
+    const ctx = at(text);
+    const offset = text.indexOf('‸');
+    expect(ctx).toMatchObject({ kind: 'bodySubst', replaceEnd: offset + 1 });
+
+    const fm = '---\nallowed-tools: Bash(${CLA‸})\n---\n';
+    expect(at(fm)).toMatchObject({ kind: 'fmSubst', replaceEnd: fm.indexOf('‸') + 1 });
+  });
+
+  it('does not swallow a brace for an unbraced substitution', () => {
+    const text = '---\nname: x\n---\nSee $‸}\n';
+    expect(at(text)).toMatchObject({ kind: 'bodySubst', replaceEnd: text.indexOf('‸') });
+  });
 });
 
 describe('degenerate input', () => {

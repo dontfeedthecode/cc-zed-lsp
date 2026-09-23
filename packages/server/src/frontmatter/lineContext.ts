@@ -118,10 +118,14 @@ export function cursorContext(text: string, offset: number): CursorContext {
   const full = text.slice(lineStart, lineEnd);
 
   const subst = SUBST.exec(before);
+  const braced = !!subst && before[before.length - (subst[1]?.length ?? 0) - 1] === '{';
+  // Editors auto-close `{`, so `${` arrives as `${|}`. Replace through that
+  // closing brace, or accepting `${CLAUDE_SKILL_DIR}` leaves a stray `}`.
+  const closing = braced ? /^[A-Za-z0-9_]*\}/.exec(text.slice(offset, lineEnd)) : null;
   const substSpan = subst && {
-    braced: before[before.length - (subst[1]?.length ?? 0) - 1] === '{',
+    braced,
     replaceStart: lineStart + subst.index,
-    replaceEnd: offset,
+    replaceEnd: offset + (closing?.[0].length ?? 0),
     prefix: subst[0],
   };
 
