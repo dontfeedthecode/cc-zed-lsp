@@ -2,11 +2,9 @@
 
 Autocomplete, documentation on hover, and validation for Claude Code `SKILL.md` files.
 
-The Claude Code skill format is specified only as prose on
-[code.claude.com/docs](https://code.claude.com/docs/en/skills) — there is no schema, no types, and
-no validator. So frontmatter mistakes are silent. A key Claude Code doesn't read, a field that only
-works alongside another one, a `---` on the wrong line that turns the whole file into content:
-nothing tells you. This does.
+For those of us still writing code by hand, this package aims to make skill development for Claude a little less painful.
+
+Features:
 
 - **Completion** for every frontmatter key and its accepted values, including the real built-in tool
   list for `allowed-tools`.
@@ -14,13 +12,9 @@ nothing tells you. This does.
 - **Diagnostics** for unknown keys, wrong types, out-of-range values, and fields that silently have
   no effect.
 
-Everything is derived from the published docs by a sync pipeline, so it doesn't drift.
-
 ## Install
 
-Not yet published — neither the extension nor its npm server package. Until both are, the extension
-cannot fetch the server for itself, so installing is three steps rather than one: build the server,
-install the extension, then point the extension at the server you built.
+Not yet published so installing is a semi-manual process for now.
 
 **1. Build the server.**
 
