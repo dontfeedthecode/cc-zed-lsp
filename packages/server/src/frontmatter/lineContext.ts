@@ -29,7 +29,8 @@ export type CursorContext =
   | ({ kind: 'fmValue'; key: string; path: string[]; style: ValueStyle } & Span)
   | ({ kind: 'fmSeqItem'; key: string; path: string[] } & Span)
   | ({ kind: 'fmNestedKey'; path: string[]; indent: number } & Span)
-  | ({ kind: 'bodySubst'; braced: boolean } & Span);
+  | ({ kind: 'bodySubst'; braced: boolean } & Span)
+  | ({ kind: 'fmSubst'; braced: boolean } & Span);
 
 export interface FrontmatterBounds {
   bodyStart: number;
@@ -116,19 +117,28 @@ export function cursorContext(text: string, offset: number): CursorContext {
   const before = text.slice(lineStart, offset);
   const full = text.slice(lineStart, lineEnd);
 
+  const subst = SUBST.exec(before);
+  const braced = !!subst && before[before.length - (subst[1]?.length ?? 0) - 1] === '{';
+  // Editors auto-close `{`, so `${` arrives as `${|}`. Replace through that
+  // closing brace, or accepting `${CLAUDE_SKILL_DIR}` leaves a stray `}`.
+  const closing = braced ? /^[A-Za-z0-9_]*\}/.exec(text.slice(offset, lineEnd)) : null;
+  const substSpan = subst && {
+    braced,
+    replaceStart: lineStart + subst.index,
+    replaceEnd: offset + (closing?.[0].length ?? 0),
+    prefix: subst[0],
+  };
+
   // --- body -----------------------------------------------------------------
   if (!bounds || offset <= bounds.bodyStart || offset > bounds.bodyEnd) {
-    const m = SUBST.exec(before);
-    if (m) {
-      return {
-        kind: 'bodySubst',
-        braced: before[before.length - (m[1]?.length ?? 0) - 1] === '{',
-        replaceStart: lineStart + m.index,
-        replaceEnd: offset,
-        prefix: m[0],
-      };
-    }
-    return { kind: 'outside' };
+    return substSpan ? { kind: 'bodySubst', ...substSpan } : { kind: 'outside' };
+  }
+
+  // --- substitution inside a value: "allowed-tools: Bash(${CLAUDE_|" --------
+  // Checked before the value branches, which would otherwise treat `Bash(${`
+  // as a tool-name prefix and offer nothing that matches it.
+  if (substSpan && /^\s*(-|[A-Za-z_][A-Za-z0-9_.-]*\s*:)/.test(before)) {
+    return { kind: 'fmSubst', ...substSpan };
   }
 
   // --- sequence item: "  - Re|" --------------------------------------------
