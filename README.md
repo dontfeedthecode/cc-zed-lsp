@@ -38,8 +38,11 @@ npm ci && npm run build
 rustup target add wasm32-wasip2
 ```
 
-**2. Install the extension.** In Zed: command palette → **zed: install dev extension** → select the
-`extension/` directory. Zed compiles it to WebAssembly itself; this takes a minute the first time.
+**2. Install the extension.** In Zed, open the command palette and run **zed: install dev extension**,
+or open **zed: extensions** (`cmd-shift-x`) and click **Install Dev Extension**. In the folder picker,
+choose the `extension` folder *inside* the repo you just cloned (`cc-zed-lsp/extension`, not the repo
+root). Zed compiles it to WebAssembly, which takes about a minute the first time. When it's done,
+**Claude Skills** appears in the Extensions list marked as a dev extension.
 
 **3. Point it at your build.** Without this the extension tries to install
 `@thecode/claude-skills-lsp` from npm, which does not exist yet, and the server never starts. In the
@@ -50,16 +53,19 @@ project where you want skill support, create `.zed/settings.json`:
   "lsp": {
     "claude-skills-lsp": {
       "binary": {
-        "path": "/ABSOLUTE/PATH/TO/cc-zed-lsp/packages/server/dist/server.js",
-        "arguments": ["--stdio"]
+        "path": "/ABSOLUTE/PATH/TO/node",
+        "arguments": ["/ABSOLUTE/PATH/TO/cc-zed-lsp/packages/server/dist/server.js", "--stdio"]
       }
     }
   }
 }
 ```
 
-Use a real absolute path — `~` and relative paths are not expanded. To get skill support in *every*
-project rather than one, put the same `lsp` block in `~/.config/zed/settings.json` instead.
+`path` is Node (run `which node` to find it), and `server.js` goes in `arguments`. Zed runs
+`binary.path` directly without going through the extension, and `server.js` isn't executable, so
+pointing `path` at it fails to spawn. Use real absolute paths — `~` and relative paths are not
+expanded. To get skill support in *every* project rather than one, put the same `lsp` block in
+`~/.config/zed/settings.json` instead.
 
 **Check it worked.** Open `fixtures/demo-skill/SKILL.md` from this repo. Four of its frontmatter
 lines should be underlined, and completion after `effort: ` should offer five levels. If nothing
@@ -157,8 +163,9 @@ The server and the extension pin the same version deliberately. They share an in
 LSP, and Zed registry updates take days, so a floating server could break users the moment it's
 published with no way to hot-fix.
 
-Iterating: copy `.zed/settings.json.example` to `.zed/settings.json`, point it at your local
-`packages/server/dist/server.js`, and the extension will run that instead of the published package.
+Iterating: copy `.zed/settings.json.example` to `.zed/settings.json` and fix its Node and
+`packages/server/dist/server.js` paths for your machine. Zed then runs your local build instead of the
+published package.
 Rebuild the server and run **editor: restart language server** — about a second, no WASM rebuild.
 Changes to `extension/` need **zed: rebuild dev extension**. LSP traffic is visible under **dev: open
 language server logs**.
